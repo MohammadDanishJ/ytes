@@ -1,0 +1,217 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background-color: #050c1c;
+    color: #c1c1c1 !important;
+    /*font-family: Verdana, Geneva, Tahoma, sans-serif;*/
+    font: 400 16px/24px Roboto, Noto Sans, Noto Sans JP, Noto Sans KR, Noto Naskh Arabic, Noto Sans Thai, Noto Sans Hebrew, Noto Sans Bengali, sans-serif;
+    word-wrap: break-word;
+}
+
+::-webkit-scrollbar {
+    display: block;
+    width: 6px;
+    height: 6px;
+}
+
+ ::-webkit-scrollbar-track {
+    background: none;
+}
+
+ ::-webkit-scrollbar-thumb {
+    background: #006eff;
+    border-radius: 20px;
+}
+
+ ::-webkit-scrollbar-corner {
+    background: none;
+}
+
+ ::-webkit-scrollbar-thumb:hover {
+    background: #2d5dda70;
+}
+
+ ::-webkit-scrollbar-thumb:active {
+    background: #2d5dda;
+}
+
+a {
+    color: #2d5dda;
+}
+
+a:hover {
+    color: #a09f9f;
+}
+
+a:active {
+    color: #f1f1f1;
+}
+
+a.inherit {
+    color: inherit;
+}
+
+a.inherit:hover {
+    color: #a09f9f;
+}
+
+a.inherit:active {
+    color: #2d5dda;
+}
+
+.pclr {
+    color: #2d5dda !important;
+}
+
+.pclr:hover {
+    opacity: .7;
+}
+
+.pclr:active {
+    color: #f1f1f1 !important;
+}
+
+button {
+    border: none;
+    background-color: inherit;
+    outline: none;
+    overflow: hidden;
+}
+
+input,
+textarea,
+button {
+    color: #fff;
+}
+
+.fl {
+    display: flex;
+}
+
+.flc {
+    justify-content: center;
+    align-items: center;
+}
+
+.flsb {
+    justify-content: space-between;
+}
+
+.flfs {
+    justify-content: flex-start;
+}
+
+.fldrw {
+    flex-direction: row;
+}
+
+.fldcl {
+    flex-direction: column;
+}
+
+.flww {
+    flex-wrap: wrap;
+}
+
+.w100 {
+    width: 100%;
+}
+
+.h100 {
+    height: 100%;
+}
+
+.pfx {
+    position: fixed;
+}
+
+.pabs {
+    position: absolute;
+}
+
+.prel {
+    position: relative;
+}
+
+.t0 {
+    top: 0;
+}
+
+.b0 {
+    bottom: 0;
+}
+
+.bgbs {
+    background-color: #050c1c;
+}
+
+.bgbs-faded {
+    background-color: #050c1c42;
+    backdrop-filter: blur(2px);
+}
+
+.bghd {
+    background-color: #040916;
+}
+
+.b-grey {
+    background-color: #1e283e;
+}
+
+.b-grey-faded {
+    background-color: #1e283e70;
+}
+
+img,
+input,
+textarea {
+    box-sizing: content-box;
+}
+
+.cd {
+    cursor: default;
+}
+
+.cp {
+    cursor: pointer;
+}
+
+.cna {
+    cursor: not-allowed;
+}
+
+.cnt {
+    width: 95%;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.o5 {
+    opacity: .5;
+}
+
+.t2s {
+    transition: .2s linear;
+}
+
+.zmn1 {
+    z-index: -1;
+}
+
+.d-none {
+    display: none;
+}
+
+.lhinit {
+    line-height: initial;
+}
+
+.text-center {
+    text-align: center;
+}
