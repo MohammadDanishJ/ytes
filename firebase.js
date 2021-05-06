@@ -48,16 +48,54 @@ firebase.auth().signInWithEmailAndPassword(email, password)
         // ...
         var db = firebase.firestore();
 
-        db.collection("rate").add({
-                date: "01-01-2001",
-                rate: "125"
-            })
-            .then((docRef) => {
-                console.log("Document written with ID: ", docRef.id);
-            })
-            .catch((error) => {
-                console.error("Error adding document: ", error);
+        // db.collection("rate").add({
+        //         uid: user.uid,
+        //         date: firebase.firestore.FieldValue.serverTimestamp(),
+        //         rate: "125"
+        //     })
+        //     .then((docRef) => {
+        //         console.log("Document written with ID: ", docRef.id);
+        //     })
+        //     .catch((error) => {
+        //         console.error("Error adding document: ", error);
+        //     });
+
+        var query = firebase.firestore()
+            .collection('rate')
+            .orderBy('date', 'desc')
+            .limit(7);
+
+        var array = [],
+            i = 0;
+
+        // Start listening to the query.
+        query.onSnapshot(function(snapshot) {
+            snapshot.docChanges().forEach(function(change) {
+                if (change.type === 'removed') {
+                    deleteMessage(change.doc.id);
+                } else {
+
+                    var message = change.doc.data();
+                    var myDate = new Date(message.date * 1000);
+                    var formatedTime = myDate.toJSON();
+                    console.log(formatedTime);
+                    let date = message.date ? message.date.toDate() : '';
+                    array[i] = [date, message.rate];
+                    i++;
+                    //response.push(message);
+                    //console.log(message);
+                    // timestamp = message.date ? message.date.toMillis() : Date.now();
+                    // timestamp = timestamp.toDate();
+                    //console.log(change.doc.id + ' ' + date + ' ' + message.rate + ' ' + message.uid);
+
+                    //console.log(message.rate, date);
+
+                    //chartFromFirebase(message);
+                }
             });
+            console.log(array);
+            drawChart(array);
+        });
     })
     .catch((error) => {
         var errorCode = error.code;

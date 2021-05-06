@@ -1,6 +1,8 @@
 let canvas, ctx, rXGrid, rYGrid, xGrid, yGrid;
 
+
 $(document).ready(function() {
+
 
     checkElement('canvas') //use whichever selector you want
         .then((element) => {
@@ -112,15 +114,15 @@ function drawChart(entries) {
     var xPlot = 6;
 
     for (const [dayR, rate] of entries) {
-
-
+        console.log(dayR.getDay());
         var rateInBlocks = rate / 10,
-            t = dayR.split(/[- :]/) /*Split MYSQL Date*/ ,
-            d = new Date(Date.UTC(t[0], t[1] - 1, t[2], t[3], t[4], t[5])) /*Convert to Javascript Date*/ ,
+            //t = dayR.split(/[- :]/) /*Split MYSQL Date*/ ,
+            //d = new Date(Date.UTC(t[0], t[1] - 1, t[2], t[3], t[4], t[5])) /*Convert to Javascript Date*/ ,
             curDate = new Date,
             days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-            dName = days[d.getDay()],
+            dName = days[dayR.getDay()],
             curDName = days[curDate.getDay()];
+        console.log('dname: ' + dName);
         dName = dName == curDName ? 'Today' : dName;
 
         if (canvas.width >= 768)
@@ -162,7 +164,7 @@ function loadChart() {
             data = JSON.parse(data);
 
             const entries = Object.entries(data);
-            // console.log(entries);
+            console.log(entries);
 
             drawChart(entries);
 

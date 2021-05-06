@@ -123,8 +123,10 @@ https: //firebase.google.com/docs/web/setup#available-libraries -->
     <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-firestore.js">
     </script>
     <script src="firebase.js"></script>
-    <script defer="defer" src="scripts.js"></script>
-    <script defer="defer" src="chart.js"></script>
+
+    
+    <script defer="defer" src="scriptscopy.js"></script>
+    <script defer="defer" src="chartcopy.js"></script>
     <script>
         function clicked() {
             alert("clicked");
