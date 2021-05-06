@@ -31,9 +31,6 @@ $(document).ready(function() {
     window.addEventListener("resize", resized);
 });
 
-function resized() {
-    $.when(setCanvasProp()).then(loadChart());
-}
 
 function setCanvasProp() {
     canvas.width = window.innerWidth;
@@ -112,7 +109,6 @@ function drawChart(entries) {
     ctx.beginPath();
 
     var xPlot = 6;
-
     for (const [dayR, rate] of entries) {
         console.log(dayR.getDay());
         var rateInBlocks = rate / 10,
@@ -137,6 +133,7 @@ function drawChart(entries) {
 
         xPlot--;
     }
+    entries.length < 6 ? ctx.lineTo(xblocks(0), yblocks(9)) : '';
 
 
     ctx.stroke();

@@ -13,7 +13,7 @@ document.onreadystatechange = function() {
             '<canvas class="pabs b0"></canvas>' +
             '<header class="pabs t0">' +
             '<div class="fl flc w100 h100 fldcl">' +
-            '<h1 class="welcome-text text-center prel cd lhinit">1 Unit, <span class="highlight">INR 125</span></h1>' +
+            '<h1 class="welcome-text text-center prel cd lhinit">1 Unit, <span class="highlight">INR <span id="rate">00.00</span></span></h1>' +
             '</div>' +
             ' </header>' +
             '</section>' +

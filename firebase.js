@@ -40,6 +40,8 @@ let email = 'mohddanish8299@gmail.com',
     password = 'Danish.0601';
 
 
+var array = [],
+    i = 0;
 firebase.auth().signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
         // Signed in
@@ -65,8 +67,6 @@ firebase.auth().signInWithEmailAndPassword(email, password)
             .orderBy('date', 'desc')
             .limit(7);
 
-        var array = [],
-            i = 0;
 
         // Start listening to the query.
         query.onSnapshot(function(snapshot) {
@@ -93,7 +93,8 @@ firebase.auth().signInWithEmailAndPassword(email, password)
                     //chartFromFirebase(message);
                 }
             });
-            console.log(array);
+            document.getElementById('rate').innerHTML = array[0][1];
+            //console.log(array[0][1]);
             drawChart(array);
         });
     })
@@ -102,3 +103,9 @@ firebase.auth().signInWithEmailAndPassword(email, password)
         var errorMessage = error.message;
         console.log(errorCode);
     });
+
+
+
+function resized() {
+    $.when(setCanvasProp()).then(drawChart(array));
+}
