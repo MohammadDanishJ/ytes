@@ -28,15 +28,15 @@ function readDataDrawChart(query) {
     //Start listening to the query.
     query.onSnapshot(function(snapshot) {
         snapshot.docChanges().forEach(function(change) {
-            console.log(change);
-            console.log(change.type);
+            //console.log(change);
+            //console.log(change.type);
 
             if (change.type === 'removed') {
                 deleteMessage(change.doc.id);
             } else {
                 var message = change.doc.data();
                 let date = message.date ? message.date.toDate() : '';
-                console.log('first attempt: ' + firstAttempt);
+                //console.log('first attempt: ' + firstAttempt);
                 if (firstAttempt) {
                     array[i] = [date, message.rate];
                 } else {
@@ -49,7 +49,7 @@ function readDataDrawChart(query) {
         });
 
         firstAttempt = false;
-        console.log(array);
+        //console.log(array);
         drawChart(array);
         resized();
 

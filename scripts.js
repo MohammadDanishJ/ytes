@@ -1,7 +1,7 @@
 checkElement('section.container') //use whichever selector you want
     .then(() => {
         var section = document.getElementsByClassName("container")[0];
-        console.log('found');
+        //console.log('found');
         content = '<section class="prel">' +
             '<div id="lander"></div>' +
             '<canvas class="pabs b0"></canvas>' +

@@ -107,7 +107,7 @@ function drawAxis() {
 
 function drawChart(entries) {
     ctx.beginPath();
-    console.log(entries);
+    //console.log(entries);
     let rateHolder = document.getElementById('rate'),
         time = document.getElementById('date');
     rateHolder.innerHTML = entries[0][1];
