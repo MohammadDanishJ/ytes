@@ -7,7 +7,7 @@ checkElement('section.container') //use whichever selector you want
             '<canvas class="pabs b0"></canvas>' +
             '<header class="pabs t0">' +
             '<div class="fl flc w100 h100 fldcl">' +
-            '<h1 class="welcome-text text-center prel cd lhinit">1 Unit, <span class="highlight">INR <span id="rate">Loading...</span></span>' +
+            '<h1 class="welcome-text text-center prel cd lhinit">1 Carat, <span class="highlight">INR <span id="rate">Loading...</span></span>' +
             '<div class="text-center prel cd lhinit" style="color: #656565; font-size: 8pt; opacity: 0.8; padding: .5rem 1rem;">Updated on: <span id="date">Loading...</span></div>' +
             '</h1>' +
             '</div>' +
@@ -26,15 +26,12 @@ checkElement('section.container') //use whichever selector you want
 checkElement('canvas') //use whichever selector you want
     .then((element) => {
         readDataDrawChart(query);
-    });
-
-checkElement('canvas') //use whichever selector you want
-    .then((element) => {
+    }).then((element) => {
         let calll = document.querySelectorAll('button.call');
         Array.from(calll).forEach(function(e) {
             e.addEventListener("click", function() {
                 if (this.dataset.action == 'call') window.open('tel:9696484833');
-                window.open('https://wa.me/+919696484833/');
+                if (this.dataset.action == 'whatsapp') window.open('https://wa.me/+919696484833/');
             });
         });
     });
