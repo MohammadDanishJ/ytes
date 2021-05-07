@@ -119,16 +119,16 @@ function drawChart(entries) {
             //t = dayR.split(/[- :]/) /*Split MYSQL Date*/ ,
             //d = new Date(Date.UTC(t[0], t[1] - 1, t[2], t[3], t[4], t[5])) /*Convert to Javascript Date*/ ,
             curDate = new Date,
-            days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+            days = ['Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat'],
             dName = days[dayR.getDay()],
             curDName = days[curDate.getDay()];
         //console.log('dname: ' + dName);
         dName = dName == curDName ? 'Today' : dName;
 
-        if (canvas.width >= 768)
-            ctx.fillText(dName + ", " + rate, xblocks(xPlot + .1), yblocks(11 - (rateInBlocks / 2) + .9));
-        else
-            ctx.fillText(rate, xblocks(xPlot + .1), yblocks(8 - (rateInBlocks / 2) + 4));
+        // if (canvas.width >= 768)
+        ctx.fillText(dName + ", " + rate, xblocks(xPlot + .1), yblocks(11 - (rateInBlocks / 2) + .9));
+        // else
+        //     ctx.fillText(rate, xblocks(xPlot + .1), yblocks(8 - (rateInBlocks / 2) + 4));
 
         ctx.strokeStyle = "white";
         ctx.lineTo(xblocks(xPlot), yblocks(8 - (rateInBlocks / 2) + 4));

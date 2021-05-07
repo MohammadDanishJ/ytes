@@ -208,6 +208,22 @@ footer {
     background-color: #006eff;
 }
 
+address {
+    margin: 2rem 0 0;
+    color: #757575;
+}
+
+nav {
+    font-size: 18pt;
+    letter-spacing: 1px;
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    font-weight: 600;
+    z-index: 3;
+    top: -70px;
+    transition: .5s all ease-in;
+}
+
 
 /*for media greater than 768px*/
 

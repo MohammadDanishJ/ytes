@@ -2,7 +2,9 @@ checkElement('section.container') //use whichever selector you want
     .then(() => {
         var section = document.getElementsByClassName("container")[0];
         //console.log('found');
-        content = '<section class="prel">' +
+        content =
+            '<nav class="pfx fl flc w100 p12 highlight">Yunus Egg Store</nav>' +
+            '<section class="prel">' +
             '<div id="lander"></div>' +
             '<canvas class="pabs b0"></canvas>' +
             '<header class="pabs t0">' +
@@ -16,10 +18,20 @@ checkElement('section.container') //use whichever selector you want
             '<section class="prel fl flc fldcl">' +
             '<h1 class="welcome-text text-center prel cd lhinit"><span class="highlight">Contact Us</h1>' +
             '<div class="fl flc flww"><button data-action="whatsapp" class="prel call cp">Whatsapp</button><button data-action="call" class="prel call cp">Call</button></div>' +
+            '<address class="p12">' +
+            'Visit Us: ' +
+            '<strong>Yunus Egg Store</strong>, ' +
+            'Azad Nagar Chauraha, Campbell Road. Balaganj, Lucknow' +
+            ' </address>' +
             '</section>' +
             '<footer class="prel b0 w100 fl flc b-grey">Proud To Serve You: YTES</footer>';
 
         section.innerHTML = content;
+
+    }).then(function() {
+        setTimeout(function() {
+            document.querySelector('nav').classList.add('t0');
+        }, 500);
     });
 
 
