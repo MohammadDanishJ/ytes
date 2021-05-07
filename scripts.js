@@ -18,7 +18,7 @@ checkElement('section.container') //use whichever selector you want
             '<section class="prel fl flc fldcl">' +
             '<h1 class="welcome-text text-center prel cd lhinit"><span class="highlight">Contact Us</h1>' +
             '<div class="fl flc flww"><button data-action="whatsapp" class="prel call cp">Whatsapp</button><button data-action="call" class="prel call cp">Call</button></div>' +
-            '<address class="p12">' +
+            '<address class="p12 text-center">' +
             'Visit Us: ' +
             '<strong>Yunus Egg Store</strong>, ' +
             'Azad Nagar Chauraha, Campbell Road. Balaganj, Lucknow' +
