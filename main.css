@@ -215,3 +215,7 @@ textarea {
 .text-center {
     text-align: center;
 }
+
+.p12 {
+    padding: 1rem 2rem;
+}

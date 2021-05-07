@@ -180,6 +180,34 @@ footer {
     padding: 2rem 1rem;
 }
 
+.btn {
+    border: 10px;
+    transition: .3s all ease;
+    border: 1px solid;
+    border-color: transparent;
+}
+
+.btn:enabled {
+    background-color: #1531748e;
+    opacity: .8;
+}
+
+.btn:enabled:hover {
+    background-color: #1531748e;
+    backdrop-filter: blur(2px);
+    opacity: 1;
+    border-color: #f0f0f0;
+}
+
+.btn:disabled {
+    cursor: no-drop;
+    opacity: .5;
+}
+
+.btn:active {
+    background-color: #006eff;
+}
+
 
 /*for media greater than 768px*/
 

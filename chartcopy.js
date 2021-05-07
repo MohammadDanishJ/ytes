@@ -107,10 +107,13 @@ function drawAxis() {
 
 function drawChart(entries) {
     ctx.beginPath();
-
+    let rateHolder = document.getElementById('rate'),
+        time = document.getElementById('date');
+    rateHolder.innerHTML = entries[0][1];
+    time.innerHTML = entries[0][0];
     var xPlot = 6;
     for (const [dayR, rate] of entries) {
-        console.log(dayR.getDay());
+        //console.log(dayR.getDay());
         var rateInBlocks = rate / 10,
             //t = dayR.split(/[- :]/) /*Split MYSQL Date*/ ,
             //d = new Date(Date.UTC(t[0], t[1] - 1, t[2], t[3], t[4], t[5])) /*Convert to Javascript Date*/ ,
@@ -118,7 +121,7 @@ function drawChart(entries) {
             days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
             dName = days[dayR.getDay()],
             curDName = days[curDate.getDay()];
-        console.log('dname: ' + dName);
+        //console.log('dname: ' + dName);
         dName = dName == curDName ? 'Today' : dName;
 
         if (canvas.width >= 768)
@@ -133,7 +136,7 @@ function drawChart(entries) {
 
         xPlot--;
     }
-    entries.length < 6 ? ctx.lineTo(xblocks(0), yblocks(9)) : '';
+    entries.length <= 6 ? ctx.lineTo(xblocks(0), yblocks(9)) : '';
 
 
     ctx.stroke();

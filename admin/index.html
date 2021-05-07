@@ -10,7 +10,24 @@
     <meta name="description" content="Landing Page For YTES">
     <!-- <link rel="apple-touch-icon" sizes="194x194" href="/apple-touch-icon.png" type="image/png"> -->
     <style>
-        #init {
+        #app,
+        body,
+        html {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            padding: 0;
+            margin: 0
+        }
+        
+        #app {
+            position: absolute;
+            top: 0;
+            left: 0
+        }
+        
+        #init,
+        #startup {
             width: 100%;
             height: 100%;
             position: fixed;
@@ -25,13 +42,13 @@
             -webkit-align-items: center;
             -webkit-justify-content: center;
             flex-direction: column;
-            -webkit-flex-direction: column;
+            -webkit-flex-direction: column
         }
         
         .spinner-container {
             -webkit-animation: rotate 2s linear infinite;
             animation: rotate 2s linear infinite;
-            z-index: 2;
+            z-index: 2
         }
         
         .spinner-path {
@@ -40,58 +57,60 @@
             stroke: #acb9bf;
             stroke-linecap: round;
             -webkit-animation: dash 1.5s ease-in-out infinite;
-            animation: dash 1.5s ease-in-out infinite;
+            animation: dash 1.5s ease-in-out infinite
         }
         
         @keyframes rotate {
             100% {
-                transform: rotate(360deg);
+                transform: rotate(360deg)
             }
         }
         
         @-webkit-keyframes rotate {
             100% {
-                -webkit-transform: rotate(360deg);
+                -webkit-transform: rotate(360deg)
             }
         }
         
         @keyframes dash {
             0% {
                 stroke-dasharray: 1, 150;
-                stroke-dashoffset: 0;
+                stroke-dashoffset: 0
             }
             50% {
                 stroke-dasharray: 90, 150;
-                stroke-dashoffset: -35;
+                stroke-dashoffset: -35
             }
             100% {
                 stroke-dasharray: 90, 150;
-                stroke-dashoffset: -124;
+                stroke-dashoffset: -124
             }
         }
         
         @-webkit-keyframes dash {
             0% {
                 stroke-dasharray: 1, 150;
-                stroke-dashoffset: 0;
+                stroke-dashoffset: 0
             }
             50% {
                 stroke-dasharray: 90, 150;
-                stroke-dashoffset: -35;
+                stroke-dashoffset: -35
             }
             100% {
                 stroke-dasharray: 90, 150;
-                stroke-dashoffset: -124;
+                stroke-dashoffset: -124
             }
         }
     </style>
 
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="//localhost/projects/ytes/style.css">
+    <link rel="stylesheet" href="//localhost/projects/ytes/main.css">
 
 </head>
 
 <body>
+
+
 
     <div id="init">
         <svg class="spinner-container" width="50" height="50" viewBox="0 0 44 44">
@@ -99,10 +118,33 @@
         </svg>
     </div>
 
-    <?php require_once 'config/db.php'; ?>
-    <div id="app"></div>
 
-    <script src="jquery.js"></script>
+    <div id="app" style="display: none;">
+
+        <div class="container">
+            <div class="fallback b-grey-faded"></div>
+            <div id="lander"></div>
+            <header class="pabs t0">
+                <div class="fl flc w100 h100 fldcl">
+                    <h1 class="welcome-text p12 cd lhinit text-center">Upload Rate For <span class="highlight">YTES</span></h1>
+                    <input type="text" name="rate" id="rate" class="inp" placeholder="Type Rate for Today" disabled>
+                    <button type="submit" id="uploadRateFire" class="btn p12 bgbs-faded cp" disabled>Update</button>
+                    <div id="status" class="status p12">Logging In...</div>
+                </div>
+            </header>
+            <div id="prompt" class="pfx b0 w100 b-grey fl flc flfs fldcl">
+
+                <span class="pabs"></span>
+                <div id="promptMessage" class="fl flc w100 h100"></div>
+
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <script src="./jquery.js"></script>
     <!-- The core Firebase JS SDK is always required and must be listed first -->
 
 
@@ -118,17 +160,13 @@ https: //firebase.google.com/docs/web/setup#available-libraries -->
     <!-- firestore  -->
     <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-firestore.js">
     </script>
-    <script src="firebase.js"></script>
+    <script src="./firebase.js"></script>
 
 
-    <script defer="defer" src="scriptscopy.js"></script>
-    <script defer="defer" src="chartcopy.js"></script>
-    <script>
-        function clicked() {
-            alert("clicked");
-        }
-        window.addEventListener("rightClick", clicked);
-    </script>
+    <!-- <script defer="defer" src="//localhost/projects/ytes/scriptscopy.js"></script>
+    <script defer="defer" src="//localhost/projects/ytes/chartcopy.js"></script> -->
+
+    <script defer="defer" src="fire.js"></script>
 </body>
 
 </html>

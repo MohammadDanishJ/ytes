@@ -13,27 +13,31 @@ document.onreadystatechange = function() {
 
     }
 }
-
 $(document).ready(function() {
 
-    $("#uploadRate").click(function() {
-        console.log("clicked");
-        rate = $("#rate").val()
-        if (!isNaN(rate))
-            uploadRate(rate);
-        else alert('Enter A Numeric Value');
-    });
+    // $("#uploadRate").click(function() {
+    //     //console.log("clicked");
+    //     rate = $("#rate").val()
+    //     if (!isNaN(rate))
+    //         console.log('up[loading started'); //uploadRate(rate);
+    //     else alert('Enter A Numeric Value');
+    // });
 
-    $("#rate").keyup(function() {
-        if ($("#rate").val().length > 0)
-            $('.btn').removeAttr('disabled');
-        else
-            $('.btn').attr('disabled', 'disabled');
-    });
+
+});
+$("#rate").keyup(function() {
+    console.log($("#rate").val());
+    if ($("#rate").val().length > 0) {
+        console.log($("#rate").val().length);
+        $('.btn').removeAttr('disabled');
+    } else {
+        console.log($("#rate").val().length);
+        $('.btn').attr('disabled', 'disabled');
+    }
 });
 
 function uploadRate(rate) {
-    console.log('uploading');
+    //console.log('uploading');
     $.ajax({
         url: "rateUpload.php",
         method: "POST",
@@ -49,9 +53,9 @@ function uploadRate(rate) {
             document.getElementById("pgloader").style.display = "none";
         },*/
         success: function(response) {
-                console.log(response);
+                //console.log(response);
                 if (response.status == true) {
-                    console.log('rate uploaded');
+                    //console.log('rate uploaded');
 
                     $(".fallback").addClass("active");
                     $("#prompt").addClass("activePrompt");
@@ -61,13 +65,13 @@ function uploadRate(rate) {
                         if (i > 0)
                             $("#promptMessage").html('Rate Uploaded: ' + response.rate + '<br>Redirecting to Home Page: ' + i + 's');
                         else
-                            window.location.href = "http://localhost/projects/ytes/";
+                            window.location.href = "/";
                         i--;
 
                     }, 1000);
 
                 } else {
-                    console.log(response);
+                    //console.log(response);
 
                     $(".fallback").addClass("active");
                     $("#prompt").addClass("activePrompt");
@@ -80,4 +84,18 @@ function uploadRate(rate) {
                         alert(err.Message);
                     }*/
     })
+}
+
+function rafAsync() {
+    return new Promise(resolve => {
+        requestAnimationFrame(resolve); //faster than set time out
+    });
+}
+
+function checkElement(selector) {
+    if (document.querySelector(selector) === null) {
+        return rafAsync().then(() => checkElement(selector));
+    } else {
+        return Promise.resolve(true);
+    }
 }

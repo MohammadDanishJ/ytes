@@ -1,28 +1,3 @@
-// <!-- The core Firebase JS SDK is always required and must be listed first -->
-// <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-app.js"></script>
-
-// <!-- TODO: Add SDKs for Firebase products that you want to use
-//      https://firebase.google.com/docs/web/setup#available-libraries -->
-// <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-analytics.js"></script>
-
-// <script>
-//   // Your web app's Firebase configuration
-//   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-//   var firebaseConfig = {
-//     apiKey: "AIzaSyD8v4u-tsvMSyLt1oktRzwXeualdSRD0EU",
-//     authDomain: "ytes-f12bc.firebaseapp.com",
-//     projectId: "ytes-f12bc",
-//     storageBucket: "ytes-f12bc.appspot.com",
-//     messagingSenderId: "658274384330",
-//     appId: "1:658274384330:web:cca9122071ff6194df7733",
-//     measurementId: "G-SJTGQ97D9Z"
-//   };
-//   // Initialize Firebase
-//   firebase.initializeApp(firebaseConfig);
-//   firebase.analytics();
-// </script>
-
-
 var firebaseConfig = {
     apiKey: "AIzaSyD8v4u-tsvMSyLt1oktRzwXeualdSRD0EU",
     authDomain: "ytes-f12bc.firebaseapp.com",
@@ -32,80 +7,88 @@ var firebaseConfig = {
     appId: "1:658274384330:web:cca9122071ff6194df7733",
     measurementId: "G-SJTGQ97D9Z"
 };
+
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
-console.log('at firebase');
-let email = 'mohddanish8299@gmail.com',
-    password = 'Danish.0601';
+//console.log('at firebase');
 
 
-var array = [],
-    i = 0;
-firebase.auth().signInWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-        // Signed in
-        var user = userCredential.user;
-        console.log('logged in');
-        // ...
-        var db = firebase.firestore();
 
-        // db.collection("rate").add({
-        //         uid: user.uid,
-        //         date: firebase.firestore.FieldValue.serverTimestamp(),
-        //         rate: "125"
-        //     })
-        //     .then((docRef) => {
-        //         console.log("Document written with ID: ", docRef.id);
-        //     })
-        //     .catch((error) => {
-        //         console.error("Error adding document: ", error);
-        //     });
+let array = [],
+    i = 0,
+    rateHolder, time;
+//console.log(rateHolder);
+var query = firebase.firestore()
+    .collection('rate')
+    .orderBy('date', 'desc')
+    .limit(7);
 
-        var query = firebase.firestore()
-            .collection('rate')
-            .orderBy('date', 'desc')
-            .limit(7);
-
-
-        // Start listening to the query.
-        query.onSnapshot(function(snapshot) {
-            snapshot.docChanges().forEach(function(change) {
-                if (change.type === 'removed') {
-                    deleteMessage(change.doc.id);
-                } else {
-
-                    var message = change.doc.data();
-                    var myDate = new Date(message.date * 1000);
-                    var formatedTime = myDate.toJSON();
-                    console.log(formatedTime);
-                    let date = message.date ? message.date.toDate() : '';
-                    array[i] = [date, message.rate];
-                    i++;
-                    //response.push(message);
-                    //console.log(message);
-                    // timestamp = message.date ? message.date.toMillis() : Date.now();
-                    // timestamp = timestamp.toDate();
-                    //console.log(change.doc.id + ' ' + date + ' ' + message.rate + ' ' + message.uid);
-
-                    //console.log(message.rate, date);
-
-                    //chartFromFirebase(message);
-                }
-            });
-            document.getElementById('rate').innerHTML = array[0][1];
-            //console.log(array[0][1]);
-            drawChart(array);
-        });
-    })
-    .catch((error) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        console.log(errorCode);
+checkElement('canvas') //use whichever selector you want
+    .then((element) => {
+        rateHolder = document.getElementById('rate'),
+            time = document.getElementById('time');
+        readDataDrawChart(query);
     });
-
-
 
 function resized() {
     $.when(setCanvasProp()).then(drawChart(array));
+}
+
+
+function readDataDrawChart(query) {
+    //Start listening to the query.
+    query.onSnapshot(function(snapshot) {
+        snapshot.docChanges().forEach(function(change) {
+            //console.log(change.type);
+            if (change.type === 'removed') {
+                deleteMessage(change.doc.id);
+            } else {
+                var message = change.doc.data();
+                //console.log('message.date:' + message.date);
+                var myDate = new Date(message.date * 1000);
+                var formatedTime = myDate.toJSON();
+                //console.log(formatedTime);
+                let date = message.date ? message.date.toDate() : '';
+                array.reverse(); //to ad data on beginning, this makes array sorted by timestamp
+                array[i] = [date, message.rate];
+                array.reverse(); //to print according to need
+                i++;
+                //response.push(message);
+                //console.log(message);
+                // timestamp = message.date ? message.date.toMillis() : Date.now();
+                // timestamp = timestamp.toDate();
+                //console.log(change.doc.id + ' ' + date + ' ' + message.rate + ' ' + message.uid);
+
+                //console.log(message.rate, date);
+
+                //chartFromFirebase(message);
+                //console.log(array);
+                //resized();
+            }
+        });
+
+        drawChart(array);
+        resized();
+
+    });
+}
+
+function rafAsync() {
+    return new Promise(resolve => {
+        requestAnimationFrame(resolve); //faster than set time out
+    });
+}
+
+function checkElement(selector) {
+    if (document.querySelector(selector) === null) {
+        return rafAsync().then(() => checkElement(selector));
+    } else {
+        return Promise.resolve(true);
+    }
+}
+
+// Delete a Message from the UI.
+function deleteMessage(id) {
+    resized();
 }

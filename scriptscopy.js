@@ -13,7 +13,9 @@ document.onreadystatechange = function() {
             '<canvas class="pabs b0"></canvas>' +
             '<header class="pabs t0">' +
             '<div class="fl flc w100 h100 fldcl">' +
-            '<h1 class="welcome-text text-center prel cd lhinit">1 Unit, <span class="highlight">INR <span id="rate">00.00</span></span></h1>' +
+            '<h1 class="welcome-text text-center prel cd lhinit">1 Unit, <span class="highlight">INR <span id="rate">Loading...</span></span>' +
+            '<div class="text-center prel cd lhinit" style="color: #656565; font-size: 8pt; opacity: 0.8; padding: .5rem 1rem;">Updated on: <span id="date">Loading...</span></div>' +
+            '</h1>' +
             '</div>' +
             ' </header>' +
             '</section>' +
@@ -32,7 +34,7 @@ document.onreadystatechange = function() {
 $(document).ready(function() {
 
     $("#uploadRate").click(function() {
-        console.log("clicked");
+        //console.log("clicked");
         rate = $("#rate").val()
         if (!isNaN(rate))
             uploadRate(rate);
@@ -48,7 +50,7 @@ $(document).ready(function() {
 });
 
 function uploadRate(rate) {
-    console.log('uploading');
+    //console.log('uploading');
     $.ajax({
         url: "rateUpload.php",
         method: "POST",
@@ -64,9 +66,9 @@ function uploadRate(rate) {
             document.getElementById("pgloader").style.display = "none";
         },*/
         success: function(response) {
-                console.log(response);
+                //console.log(response);
                 if (response.status == true) {
-                    console.log('rate uploaded');
+                    //console.log('rate uploaded');
 
                     $(".fallback").addClass("active");
                     $("#prompt").addClass("activePrompt");
@@ -82,7 +84,7 @@ function uploadRate(rate) {
                     }, 1000);
 
                 } else {
-                    console.log(response);
+                    //console.log(response);
 
                     $(".fallback").addClass("active");
                     $("#prompt").addClass("activePrompt");
