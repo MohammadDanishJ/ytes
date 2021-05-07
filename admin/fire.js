@@ -7,20 +7,6 @@ let status = document.getElementById('status'),
 rate.addEventListener('keyup', toggleButton);
 
 
-document.onreadystatechange = function() {
-    var state = document.readyState
-    if (state == 'complete') {
-        document.getElementById('interactive');
-
-        document.getElementById('init').style.display = "none";
-        let app = document.getElementById("app");
-        app.style.display = "block";
-        // var div = document.createElement('div');
-        // div.setAttribute('class', 'container');
-        // app.appendChild(div);
-    }
-}
-
 function toggleButton() {
     if (rate.value) {
         btn.removeAttribute('disabled');

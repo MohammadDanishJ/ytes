@@ -1,66 +1,40 @@
-document.onreadystatechange = function() {
-    var state = document.readyState
-    if (state == 'complete') {
-        document.getElementById('interactive');
+checkElement('section.container') //use whichever selector you want
+    .then(() => {
+        var section = document.getElementsByClassName("container")[0];
+        console.log('found');
+        content = '<section class="prel">' +
+            '<div id="lander"></div>' +
+            '<canvas class="pabs b0"></canvas>' +
+            '<header class="pabs t0">' +
+            '<div class="fl flc w100 h100 fldcl">' +
+            '<h1 class="welcome-text text-center prel cd lhinit">1 Unit, <span class="highlight">INR <span id="rate">Loading...</span></span>' +
+            '<div class="text-center prel cd lhinit" style="color: #656565; font-size: 8pt; opacity: 0.8; padding: .5rem 1rem;">Updated on: <span id="date">Loading...</span></div>' +
+            '</h1>' +
+            '</div>' +
+            ' </header>' +
+            '</section>' +
+            '<section class="prel fl flc fldcl">' +
+            '<h1 class="welcome-text text-center prel cd lhinit"><span class="highlight">Contact Us</h1>' +
+            '<div class="fl flc flww"><button data-action="whatsapp" class="prel call cp">Whatsapp</button><button data-action="call" class="prel call cp">Call</button></div>' +
+            '</section>' +
+            '<footer class="prel b0 w100 fl flc b-grey">Proud To Serve You: YTES</footer>';
 
-        document.getElementById('init').style.display = "none";
-        let app = document.getElementById("app");
-        var div = document.createElement('section');
-        div.setAttribute('class', 'container');
-        div.classList.add('prel');
-        app.appendChild(div);
-
-        checkElement('canvas') //use whichever selector you want
-            .then((element) => {
-                let calll = document.querySelectorAll('button.call');
-                Array.from(calll).forEach(function(e) {
-                    e.addEventListener("click", function() {
-                        if (this.dataset.action == 'call') window.open('tel:9696484833');
-                        window.open('https://wa.me/+919696484833/');
-                    });
-                });
-            });
-
-        loadRate();
-
-    }
-}
-
-//$(document).ready(function() {});
-
-
-function loadRate() {
-    $.ajax({
-        url: "loadRate.php",
-        method: "POST",
-        /*data: {
-            delete_n_id: delete_n_id
-        },*/
-
-        /*beforeSend: function() {
-            document.getElementById("pgloader").style.display = "block";
-        },
-        complete: function() {
-            document.getElementById("pgloader").style.display = "none";
-        },*/
-        success: function(data) {
-            //console.log(data);
-            $("#app>.container").append(data).fadeIn("slow");
-            loadChart();
-        }
-    })
-}
-
-function rafAsync() {
-    return new Promise(resolve => {
-        requestAnimationFrame(resolve); //faster than set time out
+        section.innerHTML = content;
     });
-}
 
-function checkElement(selector) {
-    if (document.querySelector(selector) === null) {
-        return rafAsync().then(() => checkElement(selector));
-    } else {
-        return Promise.resolve(true);
-    }
-}
+
+checkElement('canvas') //use whichever selector you want
+    .then((element) => {
+        readDataDrawChart(query);
+    });
+
+checkElement('canvas') //use whichever selector you want
+    .then((element) => {
+        let calll = document.querySelectorAll('button.call');
+        Array.from(calll).forEach(function(e) {
+            e.addEventListener("click", function() {
+                if (this.dataset.action == 'call') window.open('tel:9696484833');
+                window.open('https://wa.me/+919696484833/');
+            });
+        });
+    });

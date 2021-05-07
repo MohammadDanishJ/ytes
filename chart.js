@@ -1,6 +1,8 @@
 let canvas, ctx, rXGrid, rYGrid, xGrid, yGrid;
 
+
 $(document).ready(function() {
+
 
     checkElement('canvas') //use whichever selector you want
         .then((element) => {
@@ -29,9 +31,6 @@ $(document).ready(function() {
     window.addEventListener("resize", resized);
 });
 
-function resized() {
-    $.when(setCanvasProp()).then(loadChart());
-}
 
 function setCanvasProp() {
     canvas.width = window.innerWidth;
@@ -108,19 +107,22 @@ function drawAxis() {
 
 function drawChart(entries) {
     ctx.beginPath();
-
+    console.log(entries);
+    let rateHolder = document.getElementById('rate'),
+        time = document.getElementById('date');
+    rateHolder.innerHTML = entries[0][1];
+    time.innerHTML = entries[0][0];
     var xPlot = 6;
-
     for (const [dayR, rate] of entries) {
-
-
+        //console.log(dayR.getDay());
         var rateInBlocks = rate / 10,
-            t = dayR.split(/[- :]/) /*Split MYSQL Date*/ ,
-            d = new Date(Date.UTC(t[0], t[1] - 1, t[2], t[3], t[4], t[5])) /*Convert to Javascript Date*/ ,
+            //t = dayR.split(/[- :]/) /*Split MYSQL Date*/ ,
+            //d = new Date(Date.UTC(t[0], t[1] - 1, t[2], t[3], t[4], t[5])) /*Convert to Javascript Date*/ ,
             curDate = new Date,
             days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-            dName = days[d.getDay()],
+            dName = days[dayR.getDay()],
             curDName = days[curDate.getDay()];
+        //console.log('dname: ' + dName);
         dName = dName == curDName ? 'Today' : dName;
 
         if (canvas.width >= 768)
@@ -135,6 +137,7 @@ function drawChart(entries) {
 
         xPlot--;
     }
+    entries.length <= 6 ? ctx.lineTo(xblocks(0), yblocks(9)) : '';
 
 
     ctx.stroke();
@@ -162,7 +165,7 @@ function loadChart() {
             data = JSON.parse(data);
 
             const entries = Object.entries(data);
-            // console.log(entries);
+            console.log(entries);
 
             drawChart(entries);
 
