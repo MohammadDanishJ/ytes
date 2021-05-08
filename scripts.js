@@ -3,7 +3,7 @@ checkElement('section.container') //use whichever selector you want
         var section = document.getElementsByClassName("container")[0];
         //console.log('found');
         content =
-            '<nav class="pfx fl flc w100 p12 highlight">Yunus Egg Store</nav>' +
+            '<nav class="pfx fl flc w100 p12 highlight text-center">Yunus Egg Store <span id="shopStatus" class="shopStatus closed">closed</span></nav>' +
             '<section class="prel">' +
             '<div id="lander"></div>' +
             '<canvas class="pabs b0"></canvas>' +
@@ -21,7 +21,8 @@ checkElement('section.container') //use whichever selector you want
             '<address class="p12 text-center">' +
             'Visit Us: ' +
             '<strong>Yunus Egg Store</strong>, ' +
-            'Azad Nagar Chauraha, Campbell Road. Balaganj, Lucknow' +
+            'Azad Nagar Chauraha, Campbell Road. Balaganj, Lucknow<br><br>' +
+            'Timming: 09:00 AM to 10:00PM' +
             ' </address>' +
             '</section>' +
             '<footer class="prel b0 w100 fl flc b-grey">Proud To Serve You: YTES</footer>';
@@ -31,8 +32,15 @@ checkElement('section.container') //use whichever selector you want
     }).then(function() {
         setTimeout(function() {
             document.querySelector('nav').classList.add('t0');
+            if (shopOpen()) {
+                shopStatus = document.getElementById('shopStatus');
+                shopStatus.classList.remove('closed');
+                shopStatus.classList.add('open');
+                shopStatus.innerHTML = 'open';
+            }
         }, 500);
     });
+
 
 
 checkElement('canvas') //use whichever selector you want
@@ -47,3 +55,13 @@ checkElement('canvas') //use whichever selector you want
             });
         });
     });
+
+function shopOpen() {
+    var d = new Date(); // current time
+    var hours = d.getHours();
+    var mins = d.getMinutes();
+    var day = d.getDay();
+
+    return hours >= 9 &&
+        (hours < 21 || hours === 21 && mins <= 51);
+}

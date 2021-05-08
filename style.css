@@ -222,6 +222,27 @@ nav {
     z-index: 3;
     top: -70px;
     transition: .5s all ease-in;
+    background-color: #3079ed1a;
+}
+
+.shopStatus {
+    padding: .1rem 1rem;
+    font-size: 8pt !important;
+    border-radius: 25px;
+    margin: 0 0 0 .5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.shopStatus.closed {
+    color: #c11414;
+    background: #c1141438;
+}
+
+.shopStatus.open {
+    color: #075e54;
+    background: #075e5438;
 }
 
 
