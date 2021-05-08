@@ -5,10 +5,11 @@ document.onreadystatechange = function() {
         document.getElementById('init').style.display = "none";
         let app = document.getElementById("app");
         app.style.display = "block";
-        var div = document.createElement('section');
-        div.setAttribute('class', 'container');
-        div.classList.add('prel');
-        app.appendChild(div);
+        app.classList.add('main');
+        // var div = document.createElement('section');
+        // div.setAttribute('class', 'container');
+        // div.classList.add('prel');
+        // app.appendChild(div);
     }
 }
 

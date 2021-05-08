@@ -1,6 +1,6 @@
-checkElement('section.container') //use whichever selector you want
+checkElement('div.main') //use whichever selector you want
     .then(() => {
-        var section = document.getElementsByClassName("container")[0];
+        var section = document.getElementById("app");
         //console.log('found');
         content =
             '<nav class="pfx fl flc w100 p12 highlight text-center">Yunus Egg Store <span id="shopStatus" class="shopStatus closed">closed</span></nav>' +
@@ -16,6 +16,7 @@ checkElement('section.container') //use whichever selector you want
             ' </header>' +
             '</section>' +
             '<section class="prel fl flc fldcl">' +
+            '<div class="shape"></div>' +
             '<h1 class="welcome-text text-center prel cd lhinit"><span class="highlight">Contact Us</h1>' +
             '<div class="fl flc flww"><button data-action="whatsapp" class="prel call cp">Whatsapp</button><button data-action="call" class="prel call cp">Call</button></div>' +
             '<address class="p12 text-center">' +
