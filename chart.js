@@ -112,21 +112,30 @@ function drawChart(entries) {
         time = document.getElementById('date');
     rateHolder.innerHTML = entries[0][1];
     time.innerHTML = entries[0][0];
-    var xPlot = 6;
+    var xPlot = 6,
+        up = true;
     for (const [dayR, rate] of entries) {
         //console.log(dayR.getDay());
         var rateInBlocks = rate / 10,
             //t = dayR.split(/[- :]/) /*Split MYSQL Date*/ ,
             //d = new Date(Date.UTC(t[0], t[1] - 1, t[2], t[3], t[4], t[5])) /*Convert to Javascript Date*/ ,
             curDate = new Date,
-            days = ['Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat'],
-            dName = days[dayR.getDay()],
-            curDName = days[curDate.getDay()];
+            days = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            dName = days[dayR.getMonth()],
+            curDName = days[curDate.getMonth()];
+        console.log(dayR.getMonth());
         //console.log('dname: ' + dName);
-        dName = dName == curDName ? 'Today' : dName;
+        dName = dayR.getDate() + dName == curDate.getDate() + curDName ? 'Today' : dayR.getDate() + ' ' + dName;
 
         // if (canvas.width >= 768)
-        ctx.fillText(dName + ", " + rate, xblocks(xPlot + .1), yblocks(11 - (rateInBlocks / 2) + .9));
+        if (up == true) {
+            ctx.fillText(dName + ", " + rate, xblocks(xPlot - .2), yblocks(11 - (rateInBlocks / 2) + .8));
+            up = false;
+        } else {
+            ctx.fillText(dName + ", " + rate, xblocks(xPlot - .2), yblocks(11 - (rateInBlocks / 2) + 1.4));
+            up = true;
+        }
+        console.log(up);
         // else
         //     ctx.fillText(rate, xblocks(xPlot + .1), yblocks(8 - (rateInBlocks / 2) + 4));
 
@@ -137,6 +146,7 @@ function drawChart(entries) {
 
         xPlot--;
     }
+
     entries.length <= 6 ? ctx.lineTo(xblocks(0), yblocks(9)) : '';
 
 

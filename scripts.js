@@ -23,7 +23,7 @@ checkElement('div.main') //use whichever selector you want
             'Visit Us: ' +
             '<strong>Yunus Egg Store</strong>, ' +
             'Azad Nagar Chauraha, Campbell Road. Balaganj, Lucknow<br><br>' +
-            'Timming: 09:00 AM to 10:00PM' +
+            '<div class="tooltip">Timming: 09:00 AM to 10:00PM<span class="tooltiptext">Call Before Visit</span></div>' +
             ' </address>' +
             '</section>' +
             '<footer class="prel b0 w100 fl flc b-grey">Proud To Serve You: YTES</footer>';
