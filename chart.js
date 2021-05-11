@@ -123,7 +123,7 @@ function drawChart(entries) {
             days = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
             dName = days[dayR.getMonth()],
             curDName = days[curDate.getMonth()];
-        console.log(dayR.getMonth());
+        //console.log(dayR.getMonth());
         //console.log('dname: ' + dName);
         dName = dayR.getDate() + dName == curDate.getDate() + curDName ? 'Today' : dayR.getDate() + ' ' + dName;
 

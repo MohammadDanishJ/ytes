@@ -26,7 +26,7 @@ checkElement('div.main') //use whichever selector you want
             '<div class="tooltip">Timming: 09:00 AM to 10:00PM<span class="tooltiptext">Call Before Visit</span></div>' +
             ' </address>' +
             '</section>' +
-            '<footer class="prel b0 w100 fl flc b-grey">Proud To Serve You: YTES</footer>';
+            '<footer class="prel b0 w100 fl flc fldcl b-grey"><div>Proud To Serve You: YTES</div><div style="opacity:0.8;transform: scale(0.9)">Report Issues or Send Feedback <a href="mailto:mdtechs.contact@gmail.com">Click Here</a></div></footer>';
 
         section.innerHTML = content;
 
