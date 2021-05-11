@@ -116,7 +116,7 @@ section {
 }
 
 .call {
-    padding: 1rem 2rem;
+    padding: .5rem 1rem;
     margin: .5rem 1rem;
     width: 250px;
     font-size: 18px;
@@ -273,6 +273,12 @@ nav {
     left: auto;
     top: calc(100vh - 160px);
     left: calc(100vw - 160px);
+}
+
+img.logo {
+    height: 1.5rem;
+    width: 1.5rem;
+    padding: 0.4rem;
 }
 
 
